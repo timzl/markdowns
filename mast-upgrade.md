@@ -22,7 +22,7 @@ github.com/docker/buildx v0.11.1 b4df085
 ```
 
 # Backup your Database
-Next, you want to create a backup of your database. Switch to the `mastodon` user and, change to the `/home/mastodon/live` directory and find the database container. It should be `live_db_1`. 
+Next, you want to create a backup of your database. Switch to the `mastodon` user and, change to the `/home/mastodon/live` directory and find the database container. It should be named `live_db_1`. 
 - su mastodon
 - cd /home/mastodon/live
 - sudo docker ps -a 
