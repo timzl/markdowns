@@ -60,13 +60,13 @@ sudo git stash
 
 Use this command to switch to the latest version:
 ```
-git checkout v4.1.4
+sudo git checkout v4.1.4
 ```
 
 You will likely see some errors here but they'll be cleaned up in the next step. 
 Check for modified files in the working directory
 ```
-git stash pop
+sudo git stash pop
 ```
 
 Use the following command to discard any changes you made to files in the working directory:
