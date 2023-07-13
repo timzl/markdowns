@@ -11,21 +11,20 @@ First, ssh into your server and ensure your system is up to date:
 sudo apt update && sudo apt upgrade
 ```
 
-# Install Docker Engine
-For some reason, the version of docker that's installed on the Marketplace Mastodon deployment will not upgrade the version out of the box. If you don't reinstall the Docker Engine, you'll get an error trying to build the new services. Follow the installation instructions found in the [Docker Documention](https://docs.docker.com/engine/install/debian/). Without the `docker-buildx-plugin` this update won't work. 
-
-Check to make sure the buildx plugin was installed:
-
+# Reinstall Docker Engine
+For some reason, the version of docker that's pre-installed on the Marketplace deployment will not upgrade Mastodon version out of the box. If you don't reinstall the Docker Engine, you'll get an error trying to build the new services. You'll need to uninstall previous docker packages and reinstall the latest version:
 ```
-docker buildx version
-github.com/docker/buildx v0.11.1 b4df085
+$ for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 # Backup your Database
 Next, you want to create a backup of your database. Switch to the `mastodon` user and, change to the `/home/mastodon/live` directory and find the database container. It should be named `live_db_1`. 
-- su mastodon
-- cd /home/mastodon/live
-- sudo docker ps -a 
+```
+$ su mastodon
+$ cd /home/mastodon/live
+$ sudo docker ps -a
+``` 
 
 Use this command to connect to create a backup of your database on the container, changing <date> to the date you creating the backup for tracking purposes:
 ```
@@ -81,7 +80,7 @@ sudo docker compose build
 ```
 Check for recently created images - you should see the image you just created at the top:
 ```
-docker images
+sudo docker images
 ```
 Run the pre-deployment database migrations:
 ```
@@ -111,7 +110,7 @@ sudo docker compose up -d
 
 Remove any unused docker data. This will get rid of any images or containers not in use with your mastodon deployment so use with caution:
 ```
-docker system prune -a 
+sudo docker system prune -a 
 ```
 
 Special thanks to Floris Van den Abeele and their work in this post titled [Upgrading your mastodon instance](https://vdna.be/site/index.php/2021/03/upgrading-a-mastodon-instance/), where I got most of the info for this guide. 
