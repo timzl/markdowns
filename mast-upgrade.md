@@ -4,7 +4,7 @@ I deployed Mastodon from the Linode marketplace and a new version with important
 
 ---
 
-The Marketplace app is set to pull the latest Mastodon version at the time of deployment. That means you will need to upgrade to any new releases manually. By following these steps, hopefully the process will be relatively straightforward.
+The Marketplace app is set to pull the latest Mastodon version at the time of deployment. That means you will need to upgrade to any new releases manually. By following these steps, hopefully the process will be relatively straightforward. It's worth noting I upgraded from v4.1.2 to v4.1.4 using this process.
 
 First, ssh into your server and ensure your system is up to date:
 ```
@@ -12,7 +12,7 @@ sudo apt update && sudo apt upgrade
 ```
 
 # Install Docker Engine
-If you don't do this first, you'll get an error trying to build the new services. Follow the installation instructions found in the [Docker Documention](https://docs.docker.com/engine/install/debian/). Without the `docker-buildx-plugin` this update won't work. 
+For some reason, the version of docker that's installed on the Marketplace Mastodon deployment will not upgrade the version out of the box. If you don't reinstall the Docker Engine, you'll get an error trying to build the new services. Follow the installation instructions found in the [Docker Documention](https://docs.docker.com/engine/install/debian/). Without the `docker-buildx-plugin` this update won't work. 
 
 Check to make sure the buildx plugin was installed:
 
