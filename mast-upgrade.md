@@ -50,7 +50,7 @@ SET row_security = off;
 
 # Upgrade to new release
 
-Now it's time to upgrade your containers to the newest release using a series of `git` and `docker` commands. 
+Now it's time to upgrade your containers to the newest release using a series of `git` and `docker` commands from the `/home/mastodon/live` directory. 
 
 Fetch the version tags from the remote and stash the changes to your working directory.
 ```
